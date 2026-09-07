@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "Rosé Pine — Afterglow",
+  "short_name": "Afterglow",
+  "version": "1.3.1",
+  "description": "A calm, modern Chrome theme built from the Rosé Pine palette.",
+  "icons": {
+    "16": "images/icon-16.png",
+    "32": "images/icon-32.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
+  "theme": {
+    "images": {
+      "theme_ntp_background": "images/new-tab-background.png"
+    },
+    "colors": {
+      "frame": [25, 23, 36],
+      "frame_inactive": [20, 18, 29],
+      "frame_incognito": [17, 16, 24],
+      "frame_incognito_inactive": [14, 13, 20],
+      "background_tab": [25, 23, 36],
+      "background_tab_inactive": [20, 18, 29],
+      "background_tab_incognito": [17, 16, 24],
+      "background_tab_incognito_inactive": [14, 13, 20],
+      "toolbar": [31, 29, 46],
+      "toolbar_text": [224, 222, 244],
+      "toolbar_button_icon": [144, 140, 170],
+      "bookmark_text": [224, 222, 244],
+      "ntp_background": [18, 16, 26],
+      "ntp_text": [224, 222, 244],
+      "ntp_link": [196, 167, 231],
+      "button_background": [38, 35, 58],
+      "omnibox_background": [14, 13, 20],
+      "omnibox_text": [224, 222, 244],
+      "tab_text": [224, 222, 244],
+      "tab_background_text": [144, 140, 170],
+      "tab_background_text_inactive": [110, 106, 134],
+      "tab_background_text_incognito": [196, 167, 231],
+      "tab_background_text_incognito_inactive": [110, 106, 134]
+    },
+    "tints": {
+      "buttons": [-1, -1, -1],
+      "frame": [-1, -1, -1],
+      "frame_inactive": [-1, -1, -1],
+      "frame_incognito": [-1, -1, -1],
+      "frame_incognito_inactive": [-1, -1, -1],
+      "background_tab": [-1, -1, -1]
+    },
+    "properties": {
+      "ntp_background_alignment": "center",
+      "ntp_background_repeat": "no-repeat",
+      "ntp_logo_alternate": 1
+    }
+  }
+}
