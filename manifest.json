@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Rosé Pine — Afterglow",
   "short_name": "Afterglow",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "A calm, modern Chrome theme built from the Rosé Pine palette.",
   "icons": {
     "16": "images/icon-16.png",

@@ -50,16 +50,25 @@ def canvas(width: int, height: int, color: tuple[int, int, int]) -> bytearray:
     return bytearray((*color, 255)) * (width * height)
 
 
+def transparent_canvas(width: int, height: int) -> bytearray:
+    return bytearray(width * height * 4)
+
+
 def blend(buf: bytearray, width: int, height: int, x: int, y: int,
           color: tuple[int, int, int], alpha: float) -> None:
     if x < 0 or y < 0 or x >= width or y >= height or alpha <= 0:
         return
     i = (y * width + x) * 4
     a = max(0.0, min(1.0, alpha))
-    ia = 1.0 - a
-    buf[i] = round(buf[i] * ia + color[0] * a)
-    buf[i + 1] = round(buf[i + 1] * ia + color[1] * a)
-    buf[i + 2] = round(buf[i + 2] * ia + color[2] * a)
+    dest_alpha = buf[i + 3] / 255
+    out_alpha = a + dest_alpha * (1 - a)
+    if out_alpha:
+        for channel in range(3):
+            buf[i + channel] = round(
+                (color[channel] * a + buf[i + channel] * dest_alpha * (1 - a))
+                / out_alpha
+            )
+    buf[i + 3] = round(out_alpha * 255)
 
 
 def soft_dot(buf: bytearray, width: int, height: int, cx: float, cy: float,
@@ -192,13 +201,13 @@ def make_background() -> None:
 
 def make_icon(size: int) -> None:
     """A two-petal mark that remains legible at Chrome's smallest icon size."""
-    buf = canvas(size, size, BASE)
+    buf = transparent_canvas(size, size)
     cx, cy = size / 2, size / 2
-    soft_dot(buf, size, size, cx, cy, size * .43, OVERLAY, 1.0)
+    soft_dot(buf, size, size, cx, cy, size * .375, OVERLAY, 1.0)
     filled_ellipse(buf, size, size, cx - size * .09, cy - size * .03,
-                   size * .15, size * .28, -0.52, LOVE)
+                   size * .13, size * .235, -0.52, LOVE)
     filled_ellipse(buf, size, size, cx + size * .09, cy - size * .03,
-                   size * .15, size * .28, 0.52, IRIS)
+                   size * .13, size * .235, 0.52, IRIS)
     soft_dot(buf, size, size, cx, cy + size * .12, max(1.2, size * .055), GOLD, 1.0)
     png(OUT / f"icon-{size}.png", size, size, buf)
 
